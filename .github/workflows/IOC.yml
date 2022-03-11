@@ -3,15 +3,17 @@
 name: CI
 
 # Controls when the workflow will run
-on:
+on: 
+  schedule:
+    - cron: '*/5 * * * *'
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  #workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,7 +26,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+     
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "rakesh_pra123@yahoo.co.in"
+          
       # Runs a single command using the runners shell
-      - name: script.sh
-        run: echo Hello, world!   
+      - name: Set permission
+        run: chmod u+r+x script.sh
+        
+      # Runs a single command using the runners shell
+      - name: Run Script
+        run: bash ./script.sh
