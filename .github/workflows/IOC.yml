@@ -25,16 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Set Node.js version ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node_version }}
-
-      - name: Install packages
-        run: npm install
-
-      - name: Run build
-        run: npm run build:linux
+      # Runs a single command using the runners shell
+      - name: Set permission
+        run: chmod u+r+x script.sh
 
       # Runs a single command using the runners shell
       - name: Run Script
