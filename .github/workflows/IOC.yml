@@ -24,7 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
       # Runs a single command using the runners shell
-      - name: script.sh
-        run: echo Hello, world!   
+      - name: Set permission
+        run: chmod u+r+x script.sh
+        
+      # Runs a single command using the runners shell
+      - name: Run Script
+        run: ./script.sh   
